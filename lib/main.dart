@@ -1,3 +1,4 @@
+import 'package:chat_app/screens/login_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -9,6 +10,6 @@ class ChatApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold());
+    return MaterialApp(debugShowCheckedModeBanner: false, home: LoginPage());
   }
 }
