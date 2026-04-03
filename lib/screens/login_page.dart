@@ -1,14 +1,24 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/screens/register_page.dart';
 import 'package:chat_app/widget/custom_button.dart';
+import 'package:chat_app/widget/custom_snack_bar.dart';
 import 'package:chat_app/widget/custom_text_field.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class LoginPage extends StatelessWidget {
+class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
 
   static String id = 'LoginPage';
 
+  @override
+  State<LoginPage> createState() => _LoginPageState();
+}
+
+class _LoginPageState extends State<LoginPage> {
+  GlobalKey<FormState> globalKey = GlobalKey();
+  String? email;
+  String? password;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,12 +48,40 @@ class LoginPage extends StatelessWidget {
               ],
             ),
             SizedBox(height: 24),
-            CustomTextField(text: 'Email'),
+            CustomTextField(
+              text: 'Email',
+              onChange: (value) {
+                email = value;
+              },
+            ),
             SizedBox(height: 24),
-            CustomTextField(text: 'Password'),
+            CustomTextField(
+              text: 'Password',
+              onChange: (value) {
+                password = value;
+              },
+            ),
             SizedBox(height: 24),
 
-            CustomButton(text: 'Sign in'),
+            CustomButton(
+              text: 'Sign in',
+              onTap: () async {
+                try {
+                  await SignUser();
+                } on FirebaseAuthException catch (e) {
+                  if (e.code == 'user-not-found') {
+                    CustomSnackBar(context, 'No user found for that email.');
+                  } else if (e.code == 'wrong-password') {
+                    CustomSnackBar(
+                      context,
+                      'Wrong password provided for that user.',
+                    );
+                  }
+                } catch (e) {
+                  CustomSnackBar(context, e.toString());
+                }
+              },
+            ),
             SizedBox(height: 24),
 
             Row(
@@ -74,4 +112,10 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
+
+Future<void> SignUser() async {
+  UserCredential userCredential = await FirebaseAuth.instance
+      .signInWithEmailAndPassword(email: email!, password: password!);
+}
+
 }
