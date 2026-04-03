@@ -8,34 +8,39 @@ class LoginPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromARGB(255, 71, 71, 71),
+      backgroundColor: const Color.fromARGB(255, 216, 216, 216),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 16.0),
         child: Column(
           children: [
-            SizedBox(height: 24),
-            Image(height: 70, image: AssetImage('assets/images/icon.png')),
+            Spacer(flex: 2),
+            Image(
+              height: 80,
+              width: 120,
+              image: AssetImage('assets/images/icon.png'),
+            ),
             SizedBox(height: 24),
             Text(
               'Chat App',
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            SizedBox(height: 24),
+            Spacer(flex: 1),
             Row(
               children: [
                 Text(
                   'Sign in',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ],
             ),
-            SizedBox(height: 34),
+            SizedBox(height: 24),
             CustomTextField(text: 'Email'),
             SizedBox(height: 24),
             CustomTextField(text: 'Password'),
-            SizedBox(height: 25),
+            SizedBox(height: 24),
+
             CustomButton(text: 'Sign in'),
-            SizedBox(height: 25),
+            SizedBox(height: 24),
 
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -47,6 +52,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
+            Spacer(flex: 3),
           ],
         ),
       ),
