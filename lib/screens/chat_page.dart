@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 
 class ChatPage extends StatelessWidget {
   CollectionReference messages = FirebaseFirestore.instance.collection(
-    'messages',
+    KMessagesCollections,
   );
 
   static String id = "ChatApp";
@@ -28,7 +28,7 @@ class ChatPage extends StatelessWidget {
                   style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
               ),
-              Image.asset('assets/images/icon.png', height: 70, width: 70),
+              Image.asset(KIcon, height: 70, width: 70),
             ],
           ),
         ),

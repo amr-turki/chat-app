@@ -38,7 +38,7 @@ class _LoginPageState extends State<LoginPage> {
                 Image(
                   height: 80,
                   width: 120,
-                  image: AssetImage('assets/images/icon.png'),
+                  image: AssetImage(KIcon),
                 ),
                 SizedBox(height: 14),
                 Text(
