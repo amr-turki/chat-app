@@ -1,4 +1,5 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/register_page.dart';
 import 'package:chat_app/widget/custom_button.dart';
 import 'package:chat_app/widget/custom_snack_bar.dart';
@@ -80,8 +81,8 @@ class _LoginPageState extends State<LoginPage> {
                       setState(() {});
                       try {
                         await SignUser();
-
                         CustomSnackBar(context, 'Success');
+                        Navigator.pushNamed(context, ChatPage.id);
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           CustomSnackBar(
