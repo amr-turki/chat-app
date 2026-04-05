@@ -11,6 +11,7 @@ class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
 
   static String id = 'LoginPage';
+  final int idd = 55;
 
   @override
   State<RegisterPage> createState() => _RegisterPageState();
@@ -49,7 +50,10 @@ class _RegisterPageState extends State<RegisterPage> {
                   children: [
                     Text(
                       'Sign up',
-                      style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   ],
                 ),
@@ -68,7 +72,7 @@ class _RegisterPageState extends State<RegisterPage> {
                   },
                 ),
                 SizedBox(height: 24),
-            
+
                 CustomButton(
                   text: 'Sign up',
                   onTap: () async {
@@ -94,20 +98,21 @@ class _RegisterPageState extends State<RegisterPage> {
                       } catch (e) {
                         CustomSnackBar(context, e.toString());
                       }
-            
+
                       isLoading = false;
-                      setState(() {
-                        
-                      });
+                      setState(() {});
                     }
                   },
                 ),
                 SizedBox(height: 24),
-            
+
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text('do not have account? ', style: TextStyle(fontSize: 18)),
+                    Text(
+                      'do not have account? ',
+                      style: TextStyle(fontSize: 18),
+                    ),
                     GestureDetector(
                       onTap: () {
                         Navigator.pop(context);
