@@ -14,7 +14,7 @@ class ChatPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: messages.snapshots(),
+      stream: messages.orderBy('CreatedAt', descending: true).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<MessageModel> messagess = [];
@@ -69,6 +69,7 @@ class ChatPage extends StatelessWidget {
                     onSubmitted: (value) {
                       messages.add({
                         'message': value,
+                        'CreatedAt': DateTime.now(),
                       });
                       _controller.clear();
                       controller.animateTo(
