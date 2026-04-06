@@ -9,6 +9,7 @@ class ChatPage extends StatelessWidget {
   );
 
   static String id = "ChatApp";
+  TextEditingController _controller = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -44,8 +45,10 @@ class ChatPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 14),
             child: TextField(
+              controller: _controller,
               onSubmitted: (value) {
                 messages.add({'message': value});
+                _controller.clear();
               },
               cursorColor: Colors.white,
               decoration: InputDecoration(
