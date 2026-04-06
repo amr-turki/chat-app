@@ -1,14 +1,16 @@
+import 'package:chat_app/model/message_model.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
-  const ChatBubble({super.key});
+  const ChatBubble({super.key, required this.message});
 
+  final MessageModel message;
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.centerLeft,
       child: Container(
-        height: 65,
+        //height: 65,
         width: 170,
         padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
         alignment: Alignment.centerLeft,
@@ -22,7 +24,7 @@ class ChatBubble extends StatelessWidget {
           ),
         ),
         child: Text(
-          'How are you?',
+          message.message,
           style: TextStyle(fontSize: 14, color: Colors.white),
         ),
       ),

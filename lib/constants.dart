@@ -4,3 +4,4 @@ const KPrimaryColor = Color.fromARGB(255, 216, 216, 216);
 const KIcon = 'assets/images/icon.png';
 
 const KMessagesCollections = 'messages';
+const KMessage = 'message';
