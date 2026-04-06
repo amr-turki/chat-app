@@ -10,6 +10,7 @@ class ChatPage extends StatelessWidget {
   );
   static String id = "ChatApp";
   TextEditingController _controller = TextEditingController();
+  final controller = ScrollController();
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
@@ -50,6 +51,8 @@ class ChatPage extends StatelessWidget {
               children: [
                 Expanded(
                   child: ListView.builder(
+                    controller: controller,
+                    reverse: true,
                     itemCount: messagess.length,
                     itemBuilder: (context, index) =>
                         ChatBubble(message: messagess[index]),
@@ -64,8 +67,15 @@ class ChatPage extends StatelessWidget {
                   child: TextField(
                     controller: _controller,
                     onSubmitted: (value) {
-                      messages.add({'message': value});
+                      messages.add({
+                        'message': value,
+                      });
                       _controller.clear();
+                      controller.animateTo(
+                        0,
+                        duration: Duration(milliseconds: 500),
+                        curve: Curves.easeIn,
+                      );
                     },
                     cursorColor: Colors.white,
                     decoration: InputDecoration(
