@@ -35,11 +35,7 @@ class _LoginPageState extends State<LoginPage> {
             child: Column(
               children: [
                 Spacer(flex: 2),
-                Image(
-                  height: 80,
-                  width: 120,
-                  image: AssetImage(KIcon),
-                ),
+                Image(height: 80, width: 120, image: AssetImage(KIcon)),
                 SizedBox(height: 14),
                 Text(
                   'Chat App',
@@ -66,6 +62,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 SizedBox(height: 24),
                 CustomTextField(
+                  obscureText: true,
                   text: 'Password',
                   onChange: (value) {
                     password = value;
@@ -82,7 +79,11 @@ class _LoginPageState extends State<LoginPage> {
                       try {
                         await SignUser();
                         CustomSnackBar(context, 'Success');
-                        Navigator.pushNamed(context, ChatPage.id,arguments: email);
+                        Navigator.pushNamed(
+                          context,
+                          ChatPage.id,
+                          arguments: email,
+                        );
                       } on FirebaseAuthException catch (e) {
                         if (e.code == 'user-not-found') {
                           CustomSnackBar(
