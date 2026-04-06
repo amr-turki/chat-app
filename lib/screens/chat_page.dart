@@ -1,6 +1,7 @@
 import 'package:chat_app/constants.dart';
 import 'package:chat_app/model/message_model.dart';
 import 'package:chat_app/widget/chat_bubble.dart';
+import 'package:chat_app/widget/chat_bubble_friend.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,7 @@ class ChatPage extends StatelessWidget {
   final controller = ScrollController();
   @override
   Widget build(BuildContext context) {
+    String email = ModalRoute.of(context)!.settings.arguments as String;
     return StreamBuilder<QuerySnapshot>(
       stream: messages.orderBy('CreatedAt', descending: true).snapshots(),
       builder: (context, snapshot) {
@@ -55,7 +57,9 @@ class ChatPage extends StatelessWidget {
                     reverse: true,
                     itemCount: messagess.length,
                     itemBuilder: (context, index) =>
-                        ChatBubble(message: messagess[index]),
+                        messagess[index].id == email
+                        ? ChatBubble(message: messagess[index])
+                        : ChatBubbleFriend(message: messagess[index]),
                   ),
                 ),
 

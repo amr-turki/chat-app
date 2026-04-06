@@ -8,7 +8,7 @@ class ChatBubbleFriend extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Align(
-      alignment: Alignment.centerLeft,
+      alignment: Alignment.centerRight,
       child: Container(
         width: 170,
         padding: EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
