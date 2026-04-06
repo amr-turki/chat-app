@@ -5,7 +5,7 @@ import 'package:chat_app/constants.dart';
 class MessageModel {
   final String message;
 
-  final int id;
+  final String id;
   MessageModel(this.message, this.id);
 
   factory MessageModel.fromJson(jsonData) {

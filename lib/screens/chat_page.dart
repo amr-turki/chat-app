@@ -74,6 +74,7 @@ class ChatPage extends StatelessWidget {
                       messages.add({
                         'message': value,
                         'CreatedAt': DateTime.now(),
+                        'id': email,
                       });
                       _controller.clear();
                       controller.animateTo(
